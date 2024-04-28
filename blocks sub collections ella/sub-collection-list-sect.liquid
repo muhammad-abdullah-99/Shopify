@@ -1,0 +1,193 @@
+<section class="sub-col-sect padd-y">
+  <div class="container">
+    <div class="ourProducts-title section-content text-center">
+        {% if section.settings.main-title != blank %}
+        <h3 class="color-primary text-uppercase">{{ section.settings.main-title }}</h3>
+        {% endif %}
+        {% if section.settings.main-subtitle != blank %}
+        <h5 class="color-secondary text-uppercase">
+            <span><img src="https://cdn.shopify.com/s/files/1/0760/6013/1624/files/line_1.png?v=1684350672" alt="image" class="imgFluid"></span>
+            {{ section.settings.main-subtitle }}
+            <span><img src="https://cdn.shopify.com/s/files/1/0760/6013/1624/files/line_1.png?v=1684350672" alt="image" class="imgFluid"></span>
+        </h5>
+        {% endif %}
+        {% if section.settings.main-para != blank %}
+        <p class="color-para text-capitalize">{{ section.settings.main-para }}</p>
+        {% endif %}
+    </div>
+<!-- Row -->
+      {% for block in section.blocks %}
+        {% if block.settings.collection_head != blank %}
+          <div class="row pt-5 mt-5">
+            <div class="col-12 col-lg-12">
+              <div class="sub-con">
+                <h3>{{ block.settings.collection_head }}</h3>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        <div class="row pt-5">
+          {% if block.settings.collection_one != blank %}
+          {% assign settings = block.settings %}
+          {% assign collection_one = collections[settings.collection_one] %}
+          {% assign collection_two = collections[settings.collection_two] %}
+          {% assign collection_three = collections[settings.collection_three] %}
+          {% assign collection_four = collections[settings.collection_four] %}
+          {% assign collection_five = collections[settings.collection_five] %}
+            <!-- Collection One  -->
+            <div class="col-12 col-md-1-5">
+              <div class="subCol-list-img subcard-hoverImg">
+                  <a href="{{ collection_one.url }}">
+                    <img src="{{  collection_one.featured_image | img_url: 'master' }}" alt="image"
+                          class="imgFluid object-fit">
+                    <h6 class="color-black text-capitalize">{{ collection_one.title }}</h6>
+                  </a>
+              </div>
+            </div>
+          {% endif %}
+          {% if block.settings.collection_two != blank %}
+            <!-- Collection Two  -->
+            <div class="col-12 col-md-1-5">
+              <div class="subCol-list-img subcard-hoverImg">
+                  <a href="{{ collection_two.url }}">
+                    <img src="{{  collection_two.featured_image | img_url: 'master' }}" alt="image"
+                          class="imgFluid object-fit">
+                    <h6 class="color-black text-capitalize">{{ collection_two.title }}</h6>
+                  </a>
+              </div>
+            </div>  
+            {% endif %}
+            {% if block.settings.collection_three != blank %}
+            <!-- Collection Three  -->
+            <div class="col-12 col-md-1-5">
+              <div class="subCol-list-img subcard-hoverImg">
+                  <a href="{{ collection_three.url }}">
+                    <img src="{{  collection_three.featured_image | img_url: 'master' }}" alt="image"
+                          class="imgFluid object-fit">
+                    <h6 class="color-black text-capitalize">{{ collection_three.title }}</h6>
+                  </a>
+              </div>
+            </div> 
+            {% endif %}
+            {% if block.settings.collection_four != blank %}
+            <!-- Collection Four  -->
+            <div class="col-12 col-md-1-5">
+              <div class="subCol-list-img subcard-hoverImg">
+                  <a href="{{ collection_four.url }}">
+                    <img src="{{  collection_four.featured_image | img_url: 'master' }}" alt="image"
+                          class="imgFluid object-fit">
+                    <h6 class="color-black text-capitalize">{{ collection_four.title }}</h6>
+                  </a>
+              </div>
+            </div> 
+            {% endif %}
+          {% if block.settings.collection_five != blank %}
+            <!-- Collection Fifth  -->
+            <div class="col-12 col-md-1-5">
+              <div class="subCol-list-img subcard-hoverImg">
+                  <a href="{{ collection_five.url }}">
+                    <img src="{{  collection_five.featured_image | img_url: 'master' }}" alt="image"
+                          class="imgFluid object-fit">
+                    <h6 class="color-black text-capitalize">{{ collection_five.title }}</h6>
+                  </a>
+              </div>
+            </div> 
+            {% endif %}        
+        </div>    
+      {% endfor %}            
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Sub Collection List",
+    "settings": [
+{
+	"id": "main-title",
+	"type": "text",
+	"label": "Title"
+	},
+    {
+	"id": "main-subtitle",
+	"type": "text",
+	"label": "Subtitle"
+	},      
+	{
+	"id": "main-para",
+	"type": "textarea",
+	"label": "Paragraph"
+	}      
+    ],
+	"blocks": [
+	{
+	"type": "collections",
+	"name": "Collection List",
+	"settings": [
+    {
+    "type": "text",
+    "id": "collection_head",
+    "label": "Heading"      
+    },
+    {
+    "type": "header",
+    "content": "First Collection"      
+    },
+    {
+    "type": "collection",
+    "id": "collection_one",
+    "label": "Collection"
+    },
+    {
+    "type": "header",
+    "content": "Second Collection"      
+    },      
+    {
+    "type": "collection",
+    "id": "collection_two",
+    "label": "Collection"
+    },
+    {
+    "type": "header",
+    "content": "Three Collection"      
+    },      
+    {
+    "type": "collection",
+    "id": "collection_three",
+    "label": "Collection"
+    },
+    {
+    "type": "header",
+    "content": "Four Collection"      
+    },      
+    {
+    "type": "collection",
+    "id": "collection_four",
+    "label": "Collection"
+    },
+    {
+    "type": "header",
+    "content": "Fifth Collection"      
+    },      
+    {
+    "type": "collection",
+    "id": "collection_five",
+    "label": "Collection"
+    }      
+	]
+	}
+	],    
+    "presets": [
+	{
+	"name": "Sub Collection List",
+	"category": "Advance Layouts"
+	}
+	]    
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

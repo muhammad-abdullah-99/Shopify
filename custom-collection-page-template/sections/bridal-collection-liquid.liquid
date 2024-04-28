@@ -1,0 +1,109 @@
+{% capture container %}
+    {{ section.settings.container }}
+{% endcapture %}
+{% assign settings = section.settings %}
+<div class="sf__collection-lists">
+  <div class="{{ container }}">
+    <div class="text-center sf__page-header section__header">
+      {%- if settings.title != blank -%}
+        <h1 class="section__heading">{{ settings.title }}</h1>
+      {%- endif -%}
+      {%- if settings.description -%}
+        <div class="text-center" style="color:var(--color-secondary);">{{ settings.description }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="sf__collection-layout">
+      {% assign rows = section.blocks.size | divided_by: 5.0 | ceil %}
+      {% for i in (1..rows) %}
+        {% assign offset = forloop.index0 | times: 5 %}
+        <div class="sf__rows-item grid-col sm:grid-cols-2 md:grid-cols-4 grid-cols-1{% if settings.layout == 'layout2' %} md:grid-rows-3{% endif %} gap-4 lg:gap-7 mb-4 lg:mb-7">
+          {% for block in section.blocks limit:5 offset:offset %}
+          {% assign settings = block.settings %}
+          {% assign collection = collections[settings.collection] %}
+          {% if settings.image != blank %}
+            <a class="sf__collection-item sf__hover-scale-up" href="{{ collection.url }}">
+              <div class="relative h-full overflow-hidden transition-shadow duration-300">
+                <div style="--aspect-ratio: 1/1">
+                  {% render 'responsive-image', image: settings.image %}
+                </div>
+                {% if settings.collection != blank %}
+                <div class="absolute z-2 transition-all duration-500 ease-out inset-0 p-4 sm:p-10 flex justify-center items-end">
+                  <button class="sf__btn sf__btn-white">{{ collection.title }}</button>
+                </div>
+                {% endif %}
+              </div>
+            </a>
+          {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection template",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+        "type": "select",
+        "id": "container",
+        "label": "Container type",
+        "default": "container-fluid",
+        "options": [
+            {
+                "value": "container-fluid",
+                "label": "Default"
+            },
+            {
+                "value": "w-full",
+                "label": "Full width"
+            },
+            {
+                "value": "container",
+                "label": "Use container box"
+            }
+        ]
+    },
+    {
+      "type": "header",
+      "content": "Settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page title",
+      "default": "All collection"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Posuere in netus a eu varius adipiscing suspendisse elementum vitae tempor suspendisse ullamcorper aenean taciti morbi potenti.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_item",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Select image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,70 @@
+<section class="about-info-section">
+  <div class="container">
+  	<div class="rows">
+      <div class="col-md-2">
+        <div class="about-head">
+          <h3>{{ section.settings.main-about-heading}}</h3>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="about-main-pic">
+        <img src="{{ section.settings.about-dp | img_url: 'large' }}" class="img-fluid" alt="">
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="about-content">
+          <h5>{{ section.settings.about-content-heading }}</h5>
+          <p>{{ section.settings.about-main-para }}</p>
+          <img src="{{ section.settings.about-main-img | img_url: 'large' }}" class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "About Main Section",
+	"class": "about-info-section",
+    "settings": [
+	{
+	"id": "main-about-heading",
+	"type": "text",
+	"label": "Main Section Heading"
+	},
+	{
+	"id": "about-dp",
+	"type": "image_picker",
+	"label": "Kindly Upload Your Desired Image"
+	},
+	{
+	"id": "about-content-heading",
+	"type": "text",
+	"label": "About Info Heading"
+	},
+	{
+	"id": "about-main-para",
+	"type": "richtext",
+	"label": "About Info Paragraph"
+	},
+	{
+	"id": "about-main-img",
+	"type": "image_picker",
+	"label": "About Info Image"
+	}
+	],
+
+	"presets": [
+	{
+	"name": "About Main Banner Section",
+	"category": "About Us Layouts"
+	}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

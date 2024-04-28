@@ -1,0 +1,89 @@
+<section class="spotted-section">
+  <div class="{{ item.container }}">
+<!--   	Blocks Loop Starts Here -->
+    {%- for block in section.blocks -%}
+      {% cycle 'section-group-start': '<div class="rows">', '', '' %}
+    <div class="col-md-4">
+      <div class="spotted-cards">
+        <a href="{{ block.settings.products.url }}">
+        	<img src="{{ block.settings.card-image | img_url: 'master' }}" alt="">
+        </a>
+        <div class="spotted-content">
+          <h3>{{ block.settings.card-title }}</h3>	
+        </div>
+      </div>
+    </div>  
+    {% if forloop.last %}</div>{% else %}
+      {% cycle 'section-group-end': '', '', '</div>' %}
+    {% endif %}
+    {% endfor %}
+  <!--   	Blocks Loop Starts Here -->
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": [
+      {
+        "type": "header",
+        "content": "General"
+      },
+      {
+        "type": "select",
+        "id": "container",
+        "label": "Container type",
+        "default": "container",
+        "options": [
+            {
+                "value": "container-fluid",
+                "label": "Default"
+            },
+            {
+                "value": "w-full",
+                "label": "Full width"
+            },
+            {
+                "value": "container",
+                "label": "Use container box"
+            }
+        ]
+      }
+	],
+      "blocks": [
+        {
+        "type": "slide",
+        "name": "Spotted Content",
+        "settings": [
+        {
+          "type": "header",
+          "content": "Column Content"
+        },
+        {
+          "id": "card-image",
+          "type": "image_picker",	
+          "label": "Card Image"
+        },
+        {
+          "id": "products",
+          "type": "product",
+          "label": "Product To Link With Card"
+        },
+        {
+          "id": "card-title",
+          "type": "text",
+          "label": "Card Heading"
+        }
+        ]
+        }
+      ]
+
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

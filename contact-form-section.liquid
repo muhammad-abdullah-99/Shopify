@@ -1,0 +1,128 @@
+<div class="news">
+<div class="container">
+<h2 class="cat-head">GET IN TOUCH</h2>
+  <div class="line" style="width:32%;background:#fff"></div>
+  <p class="cat-cap text-light">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </p>
+
+  <!-- starting form -->
+  {% form 'contact' %}
+  <div class="inquiry-form">
+  <div class="row">
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="First Name" name="contact[fname]">
+    </div>
+    <div class="col-md-6">
+    <input type="text" class="form-control" placeholder="Last Name" name="contact[lname]">
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="Phone Number" name="contact[phone]">
+    </div>
+    <div class="col-md-6">
+    <input type="text" class="form-control" placeholder="Email" name="contact[email]">
+    </div>
+    <div class="col-md-12">
+      <textarea  name="contact[body]" id="" cols="30" rows="10" class="form-control" placeholder="Message"></textarea>
+    </div>
+  </div>
+
+  <div class="bt-wrapper text-center">
+  <button type="submit" class="bt ow"  value="{{ 'contact.form.send' | t }}">Submit</button>
+  </div>
+</div>
+{% endform %}
+  <!-- ending form  -->
+  
+  <div class="newsletter">
+    <div class="row">
+        <div class="col-md-6">
+        <h1>Join Our Newsletter</h1>
+        <p>Subscribe our newsletter and get discount 30% off</p>
+        </div>
+        <!-- col-md-6 -->
+        <div class="col-md-6 mt-4">
+          {% form 'newsletter-form' %}
+        <div class="newsletter-form">
+        <input type="text" placeholder="Enter Your Email Address"  name="newsletter-form[email]">
+        <button type="submit" class="mail-btn" value="{{ 'newsletter-form.form.send' | t }}><i class="fa fa-envelope-o"></i></button>
+        {% endform %}
+        </div>
+        <!-- col-md-6  -->
+    </div>
+    <!-- row -->
+  </div>
+  <!-- newsletter -->
+</div>
+<!-- container -->
+</div>
+<!-- new -->
+
+
+
+
+
+
+{% schema %}
+{
+"name": "Welcome", // Section name
+  "class": "categories",
+"settings": [
+      {
+        "id": "category-image",
+        "type": "image_picker",
+        "label": "Hero image"
+      },
+{
+"id": "mission-heading",
+"type": "text",
+"label": "Banner Heading"
+},
+{
+"id": "mission-description",
+"type": "textarea",
+"label": "Description"
+},
+{
+"id": "mission-btn-link",
+"type": "url",
+"label": "Button URL"
+},
+{
+"id": "mission-link",
+"type": "text",
+"label": "Button name"
+},
+{
+"id": "Mission-Photo-1",
+"type": "image_picker",
+"label": "Your Image"
+},
+{
+"id": "Mission-Photo-2",
+"type": "image_picker",
+"label": "Your Image"
+},
+{
+"id": "Mission-Photo-3",
+"type": "image_picker",
+"label": "Your Image"
+},
+{
+"id": "Mission-Photo-4",
+"type": "image_picker",
+"label": "Your Image"
+}
+],
+"presets": [
+{
+"name": "Our Mission Section",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}
+{% stylesheet %}  
+{% endstylesheet %}
+{% javascript %}
+{% endjavascript %}

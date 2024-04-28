@@ -1,0 +1,78 @@
+<section class="about-redefining-section">
+  <div class="container">
+    <div class="rows">
+      <div class="col-md-12">
+        <h2>{{ section.settings.main-refin-heading }}</h2>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="col-md-6">
+        <div class="refining-image-content">
+        	<img src="{{ section.settings.main-refin-img | img_url:'large' }}" class="img-fluid" alt="">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="refin-para-one">
+          <p>{{ section.settings.refin-para-one }}</p>
+          <a href="{{ section.settings.para-one-url }}">{{ section.settings.para-one-btn }}</a>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="refin-para-two">
+          <p>{{ section.settings.refin-para-two }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "About Info Section",
+	"class": "about-redefining-section",
+    "settings": [
+	{
+	"id": "main-refin-heading",
+	"type": "text",
+	"label": "Main Heading"
+	},
+	{
+	"id": "main-refin-img",
+	"type": "image_picker",
+	"label": "Upload Info Image"
+	},
+	{
+	"id": "refin-para-one",
+	"type": "richtext",
+	"label": "Info Text"
+	},
+	{
+	"id": "para-one-url",
+	"type": "url",
+	"label": "Button Link"
+	},
+	{
+	"id": "para-one-btn",
+	"type": "text",
+	"label": "Button Name"
+	},
+	{
+	"id": "refin-para-two",
+	"type": "richtext",
+	"label": "Info Text"
+	}
+	],
+	"presets": [
+	{
+	"name": "About Info Section",
+	"category": "About Us Layouts"
+	}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

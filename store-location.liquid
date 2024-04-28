@@ -1,0 +1,56 @@
+<section class="our-location-section">
+	<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="our-location">     	
+            {% if section.settings.heading != blank %}
+              <div class="section-header">
+                <h2 class="h1">{{ section.settings.heading | escape }}</h2>
+              </div>
+			{% endif %}
+              <div class="review-text">
+		        <p>{{ section.settings.text-video-one }}</p>
+		      </div>
+            <div id="map-container-google-1" class="z-depth-1-half map-container wrapper" style="height: 200px">
+              <iframe src="{{ section.settings.map_address }}" frameborder="0" style="border:0" allowfullscreen></iframe>
+			</div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+"name": "Store Location Section", // Section name
+  "class": "our-location-section",
+"settings": [
+   {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+	},
+    {
+        "id": "text-video-one",
+        "type": "richtext",
+        "label": "Add custom text below"
+    },
+   {
+      "id": "map_address",
+      "type": "text",
+      "label": "Enter Google Map Link"
+      }
+],
+"presets": [
+{
+"name": "Store Location Section",
+"category": "Store Location LAYOUT"
+}
+]
+}
+{% endschema %}
+{% stylesheet %}  
+{% endstylesheet %}
+{% javascript %}
+{% endjavascript %}

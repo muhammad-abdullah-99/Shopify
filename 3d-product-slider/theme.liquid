@@ -1,0 +1,243 @@
+<!doctype html>
+<html
+    class="no-js supports-no-cookies {% if request.path == '/challenge' %} grow-full {% endif %}"
+    lang="{{ shop.locale }}" style="--sf-page-opacity: 0;"
+>
+
+<head>
+ {%- render 'layouthub_header' -%}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="{{ settings.color_primary }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="dns-prefetch" href="{{ canonical_url }}" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="{{ canonical_url }}" crossorigin>
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
+
+
+    {% if template.name == 'product' %}
+      <link rel="preload" as="style" href="{{ 'product-template.css' | asset_url }}">
+    {% endif %}
+    {% if template.name == 'collection' or template.name == 'list-collections' %}
+      <link rel="preload" as="style" href="{{ 'collection.css' | asset_url }}">
+    {% endif %}
+    <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
+    <link rel="preload" as="style" href="{{ 'custom.css' | asset_url }}">
+    <link rel="preload" as="script" href="{{ 'app.js' | asset_url }}">
+
+	{%- if settings.use_favicon == true and settings.favicon != blank -%}
+	    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+	{%- endif -%}
+	{%- capture seo_title -%}
+	{{ page_title }}
+	{%- if current_tags -%}
+	{%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+	{%- endif -%}
+	{%- if current_page != 1 -%}
+	&ndash; {{ 'general.meta.page' | t: page: current_page }}
+	{%- endif -%}
+	{%- assign escaped_page_title = page_title | escape -%}
+	{%- unless escaped_page_title contains shop.name -%}
+	&ndash; {{ shop.name }}
+	{%- endunless -%}
+	{%- endcapture -%}
+	<title>{{ seo_title | strip }}</title>
+
+	{%- if page_description -%}
+		<meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {% render 'social-meta-tags' %}
+    <!-- TODO: optimize font load (find way to sync with style load) -->
+    {% render 'font-face' %}
+
+    <!-- Load critical scripts BEFORE style -->
+    {% render 'critical-scripts' %}
+    {% render 'style-tags' %}
+    {% render 'critical-css' %}
+    {% render 'custom-code-head' %}
+
+    {{ content_for_header }}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
+
+  {% render 'bookthatapp-widgets' %}
+
+  {% render 'shogun-head' %}
+</head>
+
+<body
+    id="sf-theme" style="opacity: 0;"
+    class="template-{{ template.name | handle }} relative min-h-screen {% if cart.item_count == 0 %}cart-empty{% endif %}"
+    {% if template == 'product' %}
+    data-product-id="{{ product.id }}"
+    {% endif %}
+>
+    {% section 'annoucement' %}
+    {% section 'header' %}
+    <main role="main" id="MainContent">
+        <div id="scroll-to-top-target" class="w-0 h-0 invisible opacity-0"></div>
+        <!--LayoutHub-Workspace-Start-->{{ content_for_layout }}<!--LayoutHub-Workspace-End-->
+        {% if settings.show_scroll_top_button %}
+            {% render 'scroll-top-button' %}
+        {% endif %}
+        {% render 'footer-mobile__common' %}
+    </main>
+    {% section 'footer' %}
+
+    {% if request.path == '/challenge' %}
+        {% render 'customer-challenge-style' %}
+    {% endif %}
+    {% render 'custom-code-body' %}
+    {% render 'foxkit-messenger' %}
+  
+    <script src="//instant.page/5.1.0" type="module" async></script>
+    {% render 'script-tags' %}
+
+    <script src="{{ 'app.js' | asset_url }}" async onload="console.log('%c app.js loaded', 'color: #f7a046; font-size: 24px;')"></script>
+    <script src="{{ 'foxkit-app.js' | asset_url }}" async></script>
+  
+{%- render 'layouthub_footer' -%} 
+  {% include 'smile-initializer' %}
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<!-- <script>
+  $('.slick-carousel').slick({
+  centerMode: true,
+  centerPadding: '60px',
+  slidesToShow: 3,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+</script> -->
+
+<script>
+var rev = $('.rev_slider');
+rev.on('init', function(event, slick, currentSlide) {
+  var
+    cur = $(slick.$slides[slick.currentSlide]),
+    next = cur.next(),
+    next2 = cur.next().next(),
+    prev = cur.prev(),
+    prev2 = cur.prev().prev();
+  prev.addClass('slick-sprev');
+  next.addClass('slick-snext');  
+  prev2.addClass('slick-sprev2');
+  next2.addClass('slick-snext2');  
+  cur.removeClass('slick-snext').removeClass('slick-sprev').removeClass('slick-snext2').removeClass('slick-sprev2');
+  slick.$prev = prev;
+  slick.$next = next;
+}).on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+  console.log('beforeChange');
+  var
+    cur = $(slick.$slides[nextSlide]);
+  console.log(slick.$prev, slick.$next);
+  slick.$prev.removeClass('slick-sprev');
+  slick.$next.removeClass('slick-snext');
+  slick.$prev.prev().removeClass('slick-sprev2');
+  slick.$next.next().removeClass('slick-snext2');
+  next = cur.next(),  
+  prev = cur.prev();
+  //prev2.prev().prev();
+  //next2.next().next();
+  prev.addClass('slick-sprev');
+  next.addClass('slick-snext');
+  prev.prev().addClass('slick-sprev2');
+  next.next().addClass('slick-snext2');
+  slick.$prev = prev;
+  slick.$next = next;
+  cur.removeClass('slick-next').removeClass('slick-sprev').removeClass('slick-next2').removeClass('slick-sprev2');
+});
+
+rev.slick({
+  speed: 1000,
+  arrows: true,
+  dots: false,
+  focusOnSelect: true,
+  prevArrow: '<button> prev</button>',
+  nextArrow: '<button> next</button>',
+  infinite: true,
+  centerMode: true,
+  slidesPerRow: 1,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  centerPadding: '0',
+  swipe: true,
+  customPaging: function(slider, i) {
+    return '';
+  },
+  /*infinite: false,*/
+});
+</script>
+
+<script>
+$(".carosel").slick({
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  // this value should < total # of slides, otherwise the carousel won't slide at all
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  speed: 2000,
+  autoplay: true,
+  dots: false,
+  arrows: false,
+  prevArrow: $(".carosel-nav-left"),
+  nextArrow: $(".carosel-nav-right")
+});
+
+</script>
+
+<script>
+var text = $('.text-overflow'),
+     btn = $('.btn-overflow'),
+       h = text[0].scrollHeight; 
+
+if(h > 120) {
+	btn.addClass('less');
+	btn.css('display', 'block');
+}
+
+btn.click(function(e) 
+{
+  e.stopPropagation();
+
+  if (btn.hasClass('less')) {
+      btn.removeClass('less');
+      btn.addClass('more');
+      btn.text('Show less');
+
+      text.animate({'height': h});
+  } else {
+      btn.addClass('less');
+      btn.removeClass('more');
+      btn.text('Show more');
+      text.animate({'height': '130px'});
+  }  
+});
+</script>

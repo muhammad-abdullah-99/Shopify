@@ -1,0 +1,80 @@
+{%-liquid assign container = section.settings.container -%}
+<section class="collection-sect">
+  <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
+    <div class="halo-row col-carousel">
+      {% for block in section.blocks %}
+          {% assign settings = block.settings %}
+          {% assign collection = collections[settings.collection] %}
+      <div class="halo-item">
+        <div class="col-card">
+          <a href="{{ collection.url }}">
+            <h5>{{ collection.title }}</h5>
+            <img src="{{ collection.featured_image | img_url: 'large' }}" alt="">
+          </a>
+        </div>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Collection Section",
+    "settings": [
+            {
+                "type": "header",
+                "content": "t:settings_schema.general.name"
+            },
+            {
+                "type": "select",
+                "id": "container",
+                "label": "t:sections.layout.container.option",
+                "default": "fullwidth",
+                "options": [
+                    {
+                        "value": "container",
+                        "label": "t:sections.layout.container.option1"
+                    },
+                    {
+                        "value": "1170",
+                        "label": "t:sections.layout.container.option4"
+                    },
+                    {
+                        "value": "1770",
+                        "label": "t:sections.layout.container.option3"
+                    },
+                    {
+                        "value": "fullwidth",
+                        "label": "t:sections.layout.container.option2"
+                    }
+                ]
+            }      
+    ],
+	"blocks": [
+	{
+	"type": "collection",
+	"name": "collection",
+	"settings": [
+    {
+    "type": "collection",
+    "id": "collection",
+    "label": "Collection"
+    } 
+	]
+	}
+	],    
+	"presets": [
+	{
+	"name": "Collection Section",
+	"category": "Advanced Layouts"
+	}
+	]    
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

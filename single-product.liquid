@@ -1,0 +1,279 @@
+{% assign container = section.settings.container %}
+{% assign product = all_products[block.settings.product] %}
+<section class="top-selling-section">
+  <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
+    <div class="rows">
+      <div class="col-md-12">
+        <div class="top-selling-content" style="text-align: {{ section.settings.title_align }}">
+          <h2 class="title" style="color: {{ section.settings.color_main_title }};
+            font-size: {{ section.settings.fontsize_main_title | append: 'px' }}">{{ section.settings.main-heading }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="rows pro-layout">
+        <div class="col-md-7"><!--Column Starts Here-->
+          <!-- New Slider -->    
+            {% for block in section.blocks %}
+            {% assign product = all_products[block.settings.product] %}
+              <div class="one-product">
+                <div class="rows prod-one">
+                  <div class="col-md-3">
+                    <div class="one-product__slider_navigation">
+                      {% for image in product.images %} 
+                      <div class="item">
+                        <img src="{{ image.src | product_img_url: 'master' }}" alt="" />
+                      </div>
+                       {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="one-product__slider">
+                      {% for image in product.images %}
+                      <div class="item">
+                          <img src="{{ image.src | product_img_url: 'master' }}" alt=""/>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+             <!-- New Slider  -->         
+        </div><!--Column Ends Here-->
+        <div class="col-md-5"><!--Column Starts Here-->
+          {% for block in section.blocks %}
+          <div class="product-info">
+            <h1 style="margin-bottom: 20px; color: {{ block.settings.color_pro_title}}; font-size: {{ block.settings.fontsize_pro_title | append: 'px' }};">{{product.title}}</h1>
+            <p>
+            {% comment %}<del id="ComparePrice" class="product-single__price--compare-at" style="color: {{ block.settings.color_pro_price}}; font-size: {{ block.settings.fontsize_pro_price | append: 'px' }};"> {{ product.compare_at_price_min | money_without_trailing_zeros }} </del> {% endcomment %}
+            {% if product.price_varies %}
+              <small style="color: {{ block.settings.color_pro_price}}; font-size: {{ block.settings.fontsize_pro_price | append: 'px' }};">From {{ product.price_min | money }} to {{ product.price_max | money }}</small>
+               {% else %}
+              <small style="color: {{ block.settings.color_pro_price}}; font-size: {{ block.settings.fontsize_pro_price | append: 'px' }};">{{ product.price | money }}</small>
+            {% endif %} 
+            </p>
+            <a href="{{product.url}}" class="button pro-btn" style="background-color: {{ block.settings.slide_bg_button }};color: {{ block.settings.color_pro_link}}; font-size: {{ block.settings.fontsize_pro_link | append: 'px' }}; border-color: {{ block.settings.slide_border_button }}; max-width: {{ block.settings.max_width_slide_button | append: 'px' }}; display: inline-block;">{{ block.settings.pro_link_name }}</a>
+            
+          </div>
+          {% endfor %}
+        </div><!--Column Ends Here-->
+    </div>
+  </div>
+</section>
+
+{% for block in section.blocks %}  
+    {% case block.type %}
+      {% when 'top-selling' %}  
+      <style type="text/css">
+          a.pro-btn:hover {
+          background: {{ block.settings.slide_bg_button_hover }} !important;
+          color: {{ block.settings.slide_color_button_hover }} !important;
+          border-color: {{ block.settings.slide_border_button_hover }} !important;
+          transition: .6s ease;
+        }
+      </style>
+    {% endcase %} 
+  {% endfor %}
+
+{% schema %}
+  {
+    "name": "Single Product Section",
+    "settings": [
+        {
+            "type": "header",
+            "content": "GENERAL"
+        },
+        {
+            "type": "select",
+            "id": "container",
+            "label": "t:sections.layout.container.option",
+            "default": "fullwidth",
+            "options": [
+                {
+                    "value": "container",
+                    "label": "t:sections.layout.container.option1"
+                },
+                {
+                    "value": "1170",
+                    "label": "t:sections.layout.container.option4"
+                },
+                {
+                    "value": "1770",
+                    "label": "t:sections.layout.container.option3"
+                },
+                {
+                    "value": "fullwidth",
+                    "label": "t:sections.layout.container.option2"
+                }
+            ]
+        },
+            {
+              "type": "header",
+              "content": "Main Section Setting"
+            },
+            {
+              "type": "text",
+              "id": "main-heading",
+              "label": "Title"
+            },
+            {
+                "type" : "color",
+                "id" : "color_main_title",
+                "label": "Title Color",
+                "default" : "#232323"
+            },
+            {
+                "type": "range",
+                "id": "fontsize_main_title",
+                "label": "Title Font Size",
+                "min": 10,
+                "max": 50,
+                "step": 1,
+                "unit": "px",
+                "default": 16
+            },
+            {
+                "type": "select",
+                "id": "title_align",
+                "label": "Text Alignment",
+                "default": "left",
+                "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }]
+            }
+    ],
+    "blocks": [
+          {
+             "type": "top-selling",
+             "name": "Top Selling",
+              "limit": 1,
+             "settings": [
+                {
+                   "type": "product",
+                   "id": "product",
+                   "label": "Product"
+                },
+                {
+                    "type": "header",
+                    "content": "Product Settings"
+                },               
+               {
+                  "type" : "color",
+                  "id" : "color_pro_title",
+                  "label": "Title Color",
+                  "default" : "#232323"
+                },
+                {
+                    "type": "range",
+                    "id": "fontsize_pro_title",
+                    "label": "Title Font Size",
+                    "min": 10,
+                    "max": 50,
+                    "step": 1,
+                    "unit": "px",
+                    "default": 16
+                },
+               {
+                  "type" : "color",
+                  "id" : "color_pro_price",
+                  "label": "Price Color",
+                  "default" : "#232323"
+                },
+                {
+                    "type": "range",
+                    "id": "fontsize_pro_price",
+                    "label": "Price Font Size",
+                    "min": 10,
+                    "max": 50,
+                    "step": 1,
+                    "unit": "px",
+                    "default": 16
+                },
+                 {
+                  "type": "text",
+                  "id": "pro_link_name",
+                  "label": "Link Label"
+                 },
+                {
+                    "type": "range",
+                    "id": "fontsize_pro_link",
+                    "label": "Product Link Font Size",
+                    "min": 10,
+                    "max": 50,
+                    "step": 1,
+                    "unit": "px",
+                    "default": 16
+                },
+                {
+                    "type": "range",
+                    "id": "max_width_slide_button",
+                    "label" : "Button Width",
+                    "min": 100,
+                    "max": 600,
+                    "step": 5,
+                    "unit": "px",
+                    "default": 270
+                },                 
+                {
+                    "type" : "color",
+                    "id" : "color_pro_link",
+                    "label" : "Button Font Color",
+                    "default" : "#fff"
+                },
+                {
+                    "type" : "color",
+                    "id" : "slide_bg_button",
+                    "label" : "Button Backrgound Color",
+                    "default" : "#232323"
+                },
+                {
+                    "type" : "color",
+                    "id" : "slide_border_button",
+                    "label" : "Button Border Color",
+                    "default" : "#232323"
+                },
+                {
+                    "type" : "color",
+                    "id" : "slide_color_button_hover",
+                    "label" : "Button Font Hover Color",
+                    "default" : "#fff"
+                },
+                {
+                    "type" : "color",
+                    "id" : "slide_bg_button_hover",
+                    "label" : "Button Background Hover Color",
+                    "default" : "#232323"
+                },
+                {
+                    "type" : "color",
+                    "id" : "slide_border_button_hover",
+                    "label" : "Button Border Hover Color",
+                    "default" : "#232323"
+                }                
+             ]
+          }
+       ],    
+    "presets": [
+      {
+        "name": "Single Product Section",
+        "category": "Advanced Section"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

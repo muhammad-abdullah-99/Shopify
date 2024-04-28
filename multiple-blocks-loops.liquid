@@ -1,0 +1,142 @@
+<!--testimonial area start-->
+<div class="faq-client-say-area">
+  <div class="container">
+    <div class="rows">
+      <div class="col-lg-6 col-md-6">
+        <div class="faq-client_title">
+          <h2>{{ section.settings.main-heading }}</h2>
+        </div>
+        
+          <!-- New Accordion         -->
+          <!--Accordion Start-->	
+          <div class="accordion">
+              <!-- First Accordion Start -->
+              <div class="accordion-section">
+               {%- for block in section.blocks -%}
+                {% if block.type == 'accordion' %}
+                  <a class="accordion-section-title" href="#accordion{{forloop.index}}">{{ block.settings.ques-faqs }}<span class="arrow"></span></a>
+                  <div id="accordion{{forloop.index}}" class="accordion-section-content">
+                      <p>{{ block.settings.ans-faqs }}</p>
+                  </div>
+              
+              <!-- First Accordion End -->
+                {% endif %}
+			 {%- endfor -%}
+                </div>
+          </div>
+          <!-- New Accordion         -->
+       
+        
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <!--testimonial area start-->
+        <div class="testimonial_area  testimonial_about">
+          <div class="about_testi_title">
+            <h2>{{ section.settings.customers-heading }}</h2>
+          </div>
+          <div class="testimonial_container">
+            <div class="testimonial_carousel testimonial_about_two owl-carousel">
+             {%- for block in section.blocks -%}
+              {% if block.type == 'slider' %}
+              <div class="single_testimonial">
+                <div class="testimonial_thumb">
+                  <a href="#"><img src="{{ block.settings.client-img | img_url: 'master' }}" alt=""></a>
+                </div>
+                <div class="testimonial_content">
+                  <div class="testimonial_icon_img">
+                    <img src="https://cdn.shopify.com/s/files/1/0550/8526/9233/files/testimonials-icon.png?v=1640806282" alt="">
+                  </div>
+                  <p>{{ block.settings.client-review }}</p>
+                  <a href="#">{{ block.settings.client-name }}</a>
+                </div>
+              </div>
+              {% endif %}
+              {%- endfor -%}
+
+            </div>
+          </div>
+        </div>
+        <!--testimonial area end-->
+      </div>
+    </div>
+  </div>
+</div>
+<!--testimonial area end-->
+{% schema %}
+  {
+    "name": "Faqs And Customer Section",
+    "settings": [
+	{
+	"type": "header",
+	"content": "Accordion Main Content"
+	},
+	{
+	"id": "main-heading",
+	"type": "text",
+	"label": "Enter Accordion Section Heading"
+	},
+	{
+	"type": "header",
+	"content": "Customers Main Content"
+	},
+	{
+	"id": "customers-heading",
+	"type": "text",
+	"label": "Enter Customer Review Section Heading"
+	}
+	],
+	"blocks": [
+	{
+	"type": "accordion",
+	"name": "Faqs",
+	"settings": [
+	{
+	"type": "header",
+	"content": "Faqs Content"
+	},
+	{
+	"id": "ques-faqs",
+	"type": "text",	
+	"label": "Enter Question"
+	},
+	{
+	"id": "ans-faqs",
+	"type": "richtext",
+	"label": "Enter Answer"
+	}
+	]
+	},
+	 {
+        "type": "slider",
+        "name": "Customers Reviews",
+        "settings": [
+        {
+        "type": "header",
+        "content": "Clients Info"
+        },
+		{
+		"id": "client-img",
+		"type": "image_picker",
+		"label": "Client Image"
+		},
+		{
+		"id": "client-review",
+		"type": "richtext",
+		"label": "Client Review"
+		},
+		{
+		"id": "client-name",
+		"type": "text",
+		"label": "Client Name"
+		}
+		]
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

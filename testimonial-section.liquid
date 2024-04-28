@@ -1,0 +1,124 @@
+<!--Cdn Used -->
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+<!-- Cdn Used -->
+
+
+
+<!-- script should be used before the closing of body tag in theme.liquid -->
+ <script>
+  
+    $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:2
+        }
+    }
+})
+    
+  </script>
+
+<!--Script closed here-->
+
+
+<div class="clients">
+<div class="container">
+<h2 class="cat-head">What Our Client Say?</h2>
+  <div class="line" style="width:32%"></div>
+  <p class="cat-cap text-light">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </p>
+
+  <div class="testimonails">
+       
+            <div class="row">
+                <div class="col-md-12">
+                  
+<div class="owl-carousel owl-theme client-testimonial-carousel">
+    <div class="item single-testimonial-item">
+      <div class="tes-img">
+                          <img src="https://cdn.shopify.com/s/files/1/0451/2789/3160/files/review-four.png?v=1608846447" alt="">
+                          </div>
+                          <!-- tes-img -->
+                          <img src="https://cdn.shopify.com/s/files/1/0451/2789/3160/files/asset11.png?v=1608851640" alt="" class="quote">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Eveniet ex labore id beatae molestiae, libero quis eum nam voluptates quidem.</p>
+                            <h3>Maria Gregory <span>Wedding Couple</span></h3>
+  </div>
+    <div class="item single-testimonial-item">
+      <div class="tes-img">
+                          <img src="https://cdn.shopify.com/s/files/1/0451/2789/3160/files/review-four.png?v=1608846447" alt="">
+                          </div>
+                          <!-- tes-img -->
+                          <img src="https://cdn.shopify.com/s/files/1/0451/2789/3160/files/asset11.png?v=1608851640" alt="" class="quote">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Eveniet ex labore id beatae molestiae, libero quis eum nam voluptates quidem.</p>
+                            <h3>Maria Gregory <span>Wedding Couple</span></h3>
+  </div>
+    <div class="item single-testimonial-item">
+      <div class="tes-img">
+                          <img src="https://cdn.shopify.com/s/files/1/0451/2789/3160/files/review-four.png?v=1608846447" alt="">
+                          </div>
+                          <!-- tes-img -->
+                          <img src="https://cdn.shopify.com/s/files/1/0451/2789/3160/files/asset11.png?v=1608851640" alt="" class="quote">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Eveniet ex labore id beatae molestiae, libero quis eum nam voluptates quidem.</p>
+                            <h3>Maria Gregory <span>Wedding Couple</span></h3>
+  </div>
+    <div class="item single-testimonial-item">
+      <div class="tes-img">
+                          <img src="https://cdn.shopify.com/s/files/1/0451/2789/3160/files/review-four.png?v=1608846447" alt="">
+                          </div>
+                          <!-- tes-img -->
+                          <img src="https://cdn.shopify.com/s/files/1/0451/2789/3160/files/asset11.png?v=1608851640" alt="" class="quote">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Eveniet ex labore id beatae molestiae, libero quis eum nam voluptates quidem.</p>
+                            <h3>Maria Gregory <span>Wedding Couple</span></h3>
+  </div>
+</div>
+                  
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <!-- testimonails -->
+</div>
+<!-- container -->
+
+
+
+{% schema %}
+  {
+    "name": "Testimonial Slider",
+    "settings": [
+              ],
+"presets": [
+{
+"name": "Testimonial Slider Section",
+"category": "ADVANCED LAYOUT"
+}
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

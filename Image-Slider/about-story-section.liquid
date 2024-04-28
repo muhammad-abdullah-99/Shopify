@@ -1,0 +1,79 @@
+<section class="about-story-section">
+  <div class="container">
+    <div class="rows">
+      <div class="col-md-6">
+        <div class="story-content">
+          <h2>{{ section.settings.story-heading }}</h2>
+          <p>{{ section.settings.story-para }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="slider-story">
+          <p>{{ section.settings.slider-story-para }}</p>
+          
+              <div class="carosel-root">
+                <div class="carosel">
+                  {%- for block in section.blocks -%}
+                  <div class="carosel-item">
+                    <img src="{{ block.settings.image | img_url: 'large' }}" alt="">
+                  </div>
+                  {%- endfor -%}
+                </div>
+
+<!--                 <button type="button" class="carosel-nav carosel-nav-left">&lt;</button>
+                <button type="button" class="carosel-nav carosel-nav-right">&gt;</button> -->
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "About Story Section",
+	"class": "about-story-section",
+    "settings": [
+	{
+	"id": "story-heading",
+	"type": "text",
+	"label": "Main Heading"
+	},
+	{
+	"id": "story-para",
+	"type": "richtext",
+	"label": "Main Para"
+	},
+	{
+	"id": "slider-story-para",
+	"type": "richtext",
+	"label": "Slider Para"
+	}
+	],
+	"blocks": [
+	{
+	"type": "image",
+	"name": "Image",
+	"settings": [
+	{
+	"id": "image",
+	"type": "image_picker",	
+	"label": "Image"
+	}
+	]
+	}
+	],
+	"presets": [
+	{
+	"name": "About Story Section",
+	"category": "About Us Layouts"
+	}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,31 @@
+{% for block in section.blocks %}
+    {% case block.type %}
+        {% when 'rich-text' %}
+        {% include 'rich-text-on-page' %}
+        {% when 'video' %}
+        {% include 'video-on-page' %}
+    {% endcase %}
+{% endfor %}
+{% schema %}
+{
+"blocks": [
+{
+  "type": "rich-text",
+  "name": "Rich text",
+  "settings": [ *SETTINGS FOR RICH TEXT SECTION* ]
+},
+{
+  "type": "video",
+  "name": "Full Width YouTube Video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "videoID",
+      "label": "Video ID",
+      "default": "Enter Video ID Here"
+    }
+  ]
+}
+]
+}
+{% endschema %}

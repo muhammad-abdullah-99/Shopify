@@ -1,0 +1,190 @@
+<section class="couture-one-section">
+  <div class="container">
+    <div class="rows pb-3">
+      <div class="col-md-6">
+        <div class="couture-img couture-img-one" style="background-image: url({{ section.settings.photo-one | img_url: 'master' }});">
+          <a href="{{section.settings.product-one.url}}">Take a look</a>
+        </div>
+      </div>
+      <div class="col-md-6 pl-5">
+        <div class="couture-content">
+          <h2>{{ section.settings.main-head }}</h2>
+          <p>{{ section.settings.main-para }}</p>
+        </div>
+      </div>
+    </div><!-- Row Ends Here-->
+    <div class="rows pb-3">
+      <div class="col-md-12">
+        <div class="couture-img couture-img-two" style="background-image: url({{ section.settings.photo-two | img_url: 'master' }});">
+          <a href="{{section.settings.product-two.url}}">Take a look</a>
+        </div>      
+      </div>
+    </div><!--Row Ends Here-->
+    <div class="rows pb-3">
+      <div class="col-md-6">
+        <div class="couture-img couture-img-three" style="background-image: url({{ section.settings.photo-three | img_url: 'master' }});">
+          <a href="{{section.settings.product-three.url}}">Take a look</a>
+        </div>      
+      </div>
+      <div class="col-md-6">
+        <div class="couture-img couture-img-three" style="background-image: url({{ section.settings.photo-four | img_url: 'master' }});">
+          <a href="{{section.settings.product-four.url}}">Take a look</a>
+        </div>      
+      </div>
+    </div><!-- Row Ends Here-->
+    <div class="rows pb-3">
+      <div class="col-md-4">
+        <div class="couture-img couture-img-four" style="background-image: url({{ section.settings.photo-five | img_url: 'master' }});">
+          <a href="{{section.settings.product-five.url}}">Take a look</a>
+        </div>      
+      </div>
+      <div class="col-md-4">
+        <div class="couture-img couture-img-four" style="background-image: url({{ section.settings.photo-six | img_url: 'master' }});">
+          <a href="{{section.settings.product-six.url}}">Take a look</a>
+        </div>      
+      </div>
+      <div class="col-md-4">
+        <div class="couture-img couture-img-four" style="background-image: url({{ section.settings.photo-seven | img_url: 'master' }});">
+          <a href="{{section.settings.product-seven.url}}">Take a look</a>
+        </div>      
+      </div>      
+    </div><!-- Row Ends Here-->
+    <div class="rows pb-3">
+      <div class="col-md-12">
+        <div class="couture-img couture-img-fifth" style="background-image: url({{ section.settings.photolast | img_url: 'master' }});">
+          <a href="{{section.settings.productlast.url}}">Take a look</a>
+        </div>       
+      </div>
+    </div><!--Row Ends Here-->    
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Couture All Section",
+    "settings": [
+    {
+      "type": "header",
+      "content": "First Row"
+    },
+	{
+	"id": "photo-one",
+	"type": "image_picker",
+	"label": "First Product Image"
+	},
+	{
+	"id": "product-one",
+	"type": "product",
+	"label": "First Product"
+	},
+	{
+	"id": "main-head",
+	"type": "text",
+	"label": "Main Heading"
+	},
+	{
+	"id": "main-para",
+	"type": "richtext",
+	"label": "Main Paragraph"
+	},
+    {
+      "type": "header",
+      "content": "Second Row"
+    },
+	{
+	"id": "photo-two",
+	"type": "image_picker",
+	"label": "Second Product Image"
+	},
+	{
+	"id": "product-two",
+	"type": "product",
+	"label": "Second Product"
+	},
+    {
+      "type": "header",
+      "content": "Third Row"
+    },
+	{
+	"id": "photo-three",
+	"type": "image_picker",
+	"label": "Third Product Image"
+	},
+	{
+	"id": "product-three",
+	"type": "product",
+	"label": "Third Product"
+	},
+	{
+	"id": "photo-four",
+	"type": "image_picker",
+	"label": "Fourth Product Image"
+	},
+	{
+	"id": "product-four",
+	"type": "product",
+	"label": "Fourth Product"
+	},
+    {
+      "type": "header",
+      "content": "Fourth Row"
+    },
+	{
+	"id": "photo-five",
+	"type": "image_picker",
+	"label": "Fifth Product Image"
+	},
+	{
+	"id": "product-five",
+	"type": "product",
+	"label": "Fifth Product"
+	},
+	{
+	"id": "photo-six",
+	"type": "image_picker",
+	"label": "Sixth Product Image"
+	},
+	{
+	"id": "product-six",
+	"type": "product",
+	"label": "Sixth Product"
+	},
+	{
+	"id": "photo-seven",
+	"type": "image_picker",
+	"label": "Seventh Product Image"
+	},
+	{
+	"id": "product-seven",
+	"type": "product",
+	"label": "Seventh Product"
+	},
+    {
+      "type": "header",
+      "content": "Fifth Row"
+    },
+	{
+	"id": "photolast",
+	"type": "image_picker",
+	"label": "Eighth Product Image"
+	},
+	{
+	"id": "productlast",
+	"type": "product",
+	"label": "Eighth Product"
+	}
+	],
+	"presets": [
+	{
+	"name": "Couture All Section",
+	"category": "Couture Layout"
+	}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
